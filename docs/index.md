@@ -14,7 +14,7 @@ Suppose our project is "Cats recognition" - does the picture contain a cat or no
 
 
 
-### <b>1. Save model</b>
+### 1. Save model
 
 If you use Keras library, the first step is to save model as below:
 
@@ -29,15 +29,16 @@ model.save('catsRecognition.h5')
 ```
 After this process you will receive in the main project directory file: catsRecognition.h5.
 
-### <b>2. Insert Your model into MLAPI </b>
+### 2. Insert Your model into MLAPI
 
  1. Go to mlapi main directory
  2. ```/API/models/computed```
  3. Create Your own directory name for example "cats"
  4. Insert your model file into folder /cats
 
-### <b>3. Write config for Your model </b>
-```
+### 3. Write config for Your model
+
+```yaml
 [CATS]
 modelName: cats
 modelFullName: Cats Recognition
@@ -52,7 +53,9 @@ modelControllerClassName: CatsClass
 
 Save above lines in your /cats folder as config.ini
 
-### <b>4. Write Class for Your model</b>
+### 4. Write Class for Your model
+
+
 ```buildoutcfg
 
 ```
