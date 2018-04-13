@@ -18,7 +18,7 @@ Suppose our project is "Cats recognition" - does the picture contain a cat or no
 
 If you use Keras library, the first step is to save model as below:
 
-```
+```python
 # import necessary package
 import h5py
 
