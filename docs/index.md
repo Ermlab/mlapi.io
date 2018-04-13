@@ -32,7 +32,7 @@ After this process you will receive in the main project directory file: catsReco
 ### <b>2. Insert Your model into MLAPI </b>
 
  1. Go to mlapi main directory
- 2. /API/models/computed
+ 2. ```/API/models/computed```
  3. Create Your own directory name for example "cats"
  4. Insert your model file into folder /cats
 
