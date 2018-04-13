@@ -1,12 +1,12 @@
-**MLAPI.io Documentation**
+# MLAPI.io Documentation
 
-Simple API Framework for serving your <b> Machine Learning </b> model.
+Simple API Framework for serving your **Machine Learning** model.
 
 Don't write glue code for API and Keras model!
 We did it for You!
 
 
-## <b>Getting started</b>
+## Getting started
 
 We will show by example how to run Your own project.
 
@@ -27,6 +27,7 @@ model = Sequential()
 (...)
 model.save('catsRecognition.h5')
 ```
+
 After this process you will receive in the main project directory file: catsRecognition.h5.
 
 ### 2. Insert Your model into MLAPI
