@@ -52,7 +52,7 @@ modelControllerClassName: CatsClass
 
 ```
 
-Save above lines in your ***/cats*** folder as config.ini
+Save above lines in your `/cats` folder as config.ini
 
 ### 4. Write Class for Your model
 
@@ -64,7 +64,7 @@ Save above lines in your ***/cats*** folder as config.ini
 
 
 
-## <b> Check our ready models </b>
+## Check our ready models
 
 ### Car Recognition
 
