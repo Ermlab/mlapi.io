@@ -66,7 +66,7 @@ Save above lines in your `/cats` folder as *config.ini*
 
 ## Check our ready models
 
-### Car Recognition
+### [Car Recognition](https://mlapi.io/machine-learning/car-brand-and-model-recognition/)
 
-### Polish Sentiment Analysis
+### [Polish Sentiment Analysis](https://mlapi.io/api/polish-sentiment-analysis/)
 
