@@ -3,4 +3,4 @@ site_url: https://ermlab-ml.github.io/mlapi
 pages:
     - Welcome: index.md
 theme:
-  name: 'material'
+  name: 'minima'
