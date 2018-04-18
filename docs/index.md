@@ -78,8 +78,8 @@ Models which we plan to do. If you need model, just write to us office@ermlab.co
 
 [Ermlab Software](https://ermlab.com):
 
-* Marcel Odya
-* Szymon Płotka
+* Marcel Odya (@marcel-odya)
+* Szymon Płotka (@simongeek)
 * Krzysztof Sopyła (@ksopyla)
 
 
