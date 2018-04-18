@@ -66,7 +66,25 @@ Save above lines in your `/cats` folder as *config.ini*
 
 ## Check our ready models
 
-### [Car Recognition](https://mlapi.io/machine-learning/car-brand-and-model-recognition/)
+* [Car Recognition](https://mlapi.io/machine-learning/car-brand-and-model-recognition/)
+* [Polish Sentiment Analysis](https://mlapi.io/api/polish-sentiment-analysis/)
 
-### [Polish Sentiment Analysis](https://mlapi.io/api/polish-sentiment-analysis/)
+
+## TODO
+Models which we plan to do. If you need model, just write to us office@ermlab.com or edit this document and create pull request :)
+
+
+## Contributors
+
+[Ermlab Software](https://ermlab.com):
+
+* Marcel Odya
+* Szymon Płotka
+* Krzysztof Sopyła (@ksopyla)
+
+
+
+
+
+
 
