@@ -13,16 +13,27 @@ We did it for You!
 Repository contents
 ===================
 
-.. toctree::
-    :maxdepth: 4
+API
+---
 
+.. toctree::
     mlapi/app
     mlapi/helpers
     mlapi/images
     mlapi/api_users_methods
     mlapi/parsers/imageParser
+
+Models handling
+---------------
+
+.. toctree::
     models/modelsHolder
     models/modelController
+
+Database and project management
+-------------------------------
+
+.. toctree::
     manage
     db/config
     db/dbConnection
@@ -44,7 +55,7 @@ We will show by example how to run Your own project.
 Suppose our project is "Cats recognition" - does the picture contain a cat or not?
 
 1. Save model
-^^^^^^^^^^^^^
+-------------
 
 If you use Keras library, the first step is to save model as below:
 
@@ -61,7 +72,7 @@ If you use Keras library, the first step is to save model as below:
 After this process you will receive in the main project directory file: catsRecognition.h5.
 
 2. Insert Your model into MLAPI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 
 #. Go to mlapi main directory
@@ -70,7 +81,7 @@ After this process you will receive in the main project directory file: catsReco
 #. Insert your model file into folder /cats
 
 3. Write config for Your model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------
 
 .. code-block:: yaml
 
@@ -87,10 +98,10 @@ After this process you will receive in the main project directory file: catsReco
 Save above lines in your ``/cats`` folder as *config.ini*
 
 4. Write Class for Your model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 .. toctree::
     models/modelController
-    
+
 .. code-block:: buildoutcfg
 
 

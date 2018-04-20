@@ -2,7 +2,7 @@ import abc
 import logging
 #TODO: Create a metaclass forbidding incorrect implementation
 class ModelControllerClass:
-    '''Abstract lass that every particular model-specific python file should inherit from in order to load the model.
+    '''Abstract class that every particular model-specific python file should inherit from in order to load the model.
     
     Attributes
     ----------
