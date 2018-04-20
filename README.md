@@ -26,10 +26,9 @@ Then the API is available at `localhost:8000`.
 ### Seeting up the environment
 
 ```bash
-cd API/
 virtualenv -p python3 .venv
 source .venv/bin/activate
-pip install -r ../requirements.txt
+pip install -r requirements.txt
 
 export DB_SECRET_KEY=extremely_secret_key
 python manage.py create_db
@@ -49,7 +48,6 @@ python
 ## Usage
 
 ```bash
-cd API/
 source .venv/bin/activate
 DB_SECRET_KEY=extremely_secret_key gunicorn mlapi.app
 ```
