@@ -1,0 +1,371 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DB connection class &#8212; MLAPI 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="DB connection config" href="config.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-db.dbConnection">
+<span id="db-connection-class"></span><h1>DB connection class<a class="headerlink" href="#module-db.dbConnection" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="db.dbConnection.DbConnectionClass">
+<em class="property">class </em><code class="descclassname">db.dbConnection.</code><code class="descname">DbConnectionClass</code><span class="sig-paren">(</span><em>dbi</em>, <em>config</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class containing methods for DB management</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.verify" title="db.dbConnection.DbConnectionClass.verify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">verify</span></code></a>(email,&nbsp;password)</td>
+<td>Verifies the credentials.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.identity" title="db.dbConnection.DbConnectionClass.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>(payload)</td>
+<td>Returns an object with user_id field.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.is_admin" title="db.dbConnection.DbConnectionClass.is_admin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_admin</span></code></a>(identity)</td>
+<td>Returns 1 if the user with given id has administrative rights.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.check_if_email_exists" title="db.dbConnection.DbConnectionClass.check_if_email_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_if_email_exists</span></code></a>(email)</td>
+<td>Returns true if email already exists in DB.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.create_user" title="db.dbConnection.DbConnectionClass.create_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_user</span></code></a>(email,&nbsp;uses,&nbsp;is_admin)</td>
+<td>Creates a new user.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.authenticate" title="db.dbConnection.DbConnectionClass.authenticate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authenticate</span></code></a>(email,&nbsp;password)</td>
+<td>Returns User object if proper credentials.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.get_users_available_uses" title="db.dbConnection.DbConnectionClass.get_users_available_uses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_users_available_uses</span></code></a>(id)</td>
+<td>Returns amount of available POST requests for given user’s id.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.reduce_uses" title="db.dbConnection.DbConnectionClass.reduce_uses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_uses</span></code></a>(id)</td>
+<td>Reduces available user’s uses by 1.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbConnection.DbConnectionClass.save_request" title="db.dbConnection.DbConnectionClass.save_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_request</span></code></a>(request_type,&nbsp;request_url,&nbsp;…)</td>
+<td>Saves request details in DB.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.authenticate">
+<code class="descname">authenticate</code><span class="sig-paren">(</span><em>email</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns User object if proper credentials. Otherwise returns None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>email: str</strong></dt>
+<dd><p class="first last">Users email.</p>
+</dd>
+<dt><strong>password: str</strong></dt>
+<dd><p class="first last">Users password.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.check_if_email_exists">
+<code class="descname">check_if_email_exists</code><span class="sig-paren">(</span><em>email</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.check_if_email_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.check_if_email_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if email already exists in DB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>email: str</strong></dt>
+<dd><p class="first last">Email to check.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>bool</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.create_user">
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>email</em>, <em>uses</em>, <em>is_admin</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>email: str</strong></dt>
+<dd><p class="first last">Users email.</p>
+</dd>
+<dt><strong>uses: int</strong></dt>
+<dd><p class="first last">Users uses.</p>
+</dd>
+<dt><strong>is_admin: int</strong></dt>
+<dd><p class="first last">Bool cast. 1 if the user has to be admin.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.get_users_available_uses">
+<code class="descname">get_users_available_uses</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.get_users_available_uses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.get_users_available_uses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns amount of available POST requests for given user’s id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>id: int</strong></dt>
+<dd><p class="first last">Users ID.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>int</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.identity">
+<code class="descname">identity</code><span class="sig-paren">(</span><em>payload</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an object with user_id field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>payload: list</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dict</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.is_admin">
+<code class="descname">is_admin</code><span class="sig-paren">(</span><em>identity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.is_admin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.is_admin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 1 if the user with given id has administrative rights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>identity: int</strong></dt>
+<dd><p class="first last">Users ID.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>bool</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.reduce_uses">
+<code class="descname">reduce_uses</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.reduce_uses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.reduce_uses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces available user’s uses by 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>id: int</strong></dt>
+<dd><p class="first last">Users ID.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>int</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.save_request">
+<code class="descname">save_request</code><span class="sig-paren">(</span><em>request_type</em>, <em>request_url</em>, <em>response</em>, <em>user_id</em>, <em>headers</em>, <em>is_xhr</em>, <em>data_type</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.save_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.save_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves request details in DB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>request_type: str</strong></dt>
+<dd><p class="first last">Request type (POST, PUT etc.)</p>
+</dd>
+<dt><strong>request_url: str</strong></dt>
+<dd><p class="first last">Requests URL e.g <a class="reference external" href="http://localhost:8000/v2/test1">http://localhost:8000/v2/test1</a></p>
+</dd>
+<dt><strong>response: str</strong></dt>
+<dd><p class="first last">Models response to the request</p>
+</dd>
+<dt><strong>user_id: int</strong></dt>
+<dd><p class="first last">ID of user that sent request</p>
+</dd>
+<dt><strong>headers: str</strong></dt>
+<dd><p class="first last">Headers sent with the request</p>
+</dd>
+<dt><strong>is_xhr: bool</strong></dt>
+<dd><p class="first last">Was the request a XHR request.</p>
+</dd>
+<dt><strong>data_type: char</strong></dt>
+<dd><p class="first last">Type of data sent ‘I’ - image etc.</p>
+</dd>
+<dt><strong>data: str</strong></dt>
+<dd><p class="first last">Path to saved image or text.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbConnection.DbConnectionClass.verify">
+<code class="descname">verify</code><span class="sig-paren">(</span><em>email</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbConnection.html#DbConnectionClass.verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbConnection.DbConnectionClass.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies the credentials.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>email: str</strong></dt>
+<dd><p class="first last">Users email.</p>
+</dd>
+<dt><strong>password: str</strong></dt>
+<dd><p class="first last">Users password.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>db.dbModels.User or None</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="config.html" title="previous chapter">DB connection config</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/db/dbConnection.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ermlab sp z o.o..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/db/dbConnection.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
