@@ -1,0 +1,5 @@
+site_name: MLAPI.io
+site_url: https://ermlab.github.io/mlapi.io/
+pages:
+    - Welcome: index.md
+theme: jekyll-theme-cayman
