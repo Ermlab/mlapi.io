@@ -1,0 +1,5 @@
+Manage
+========
+
+.. automodule:: manage
+    :members:
