@@ -88,7 +88,9 @@ Save above lines in your ``/cats`` folder as *config.ini*
 
 4. Write Class for Your model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+.. toctree::
+    models/modelController
+    
 .. code-block:: buildoutcfg
 
 
