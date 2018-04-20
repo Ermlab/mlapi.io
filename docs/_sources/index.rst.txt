@@ -5,10 +5,16 @@
 
 Welcome to MLAPI's documentation!
 =================================
+It is a simple API Framework for serving your **Machine Learning** model.
+
+Don't write glue code for API and Keras model!
+We did it for You!
+
+Repository contents
+===================
 
 .. toctree::
     :maxdepth: 4
-    :caption: Repository contents:
 
     mlapi/app
     mlapi/helpers
@@ -23,8 +29,88 @@ Welcome to MLAPI's documentation!
     db/dbModels
 
 Indices
-==================
+=======
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+Getting started
+===============
+
+We will show by example how to run Your own project.
+
+Suppose our project is "Cats recognition" - does the picture contain a cat or not?
+
+1. Save model
+^^^^^^^^^^^^^
+
+If you use Keras library, the first step is to save model as below:
+
+.. code-block:: python
+
+   # import necessary package
+   import h5py
+
+   # Define simple example Keras model
+   model = Sequential()
+   (...)
+   model.save('catsRecognition.h5')
+
+After this process you will receive in the main project directory file: catsRecognition.h5.
+
+2. Insert Your model into MLAPI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+#. Go to mlapi main directory
+#. ``/API/models/computed``
+#. Create Your own directory name for example "cats"
+#. Insert your model file into folder /cats
+
+3. Write config for Your model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: yaml
+
+   [CATS]
+   modelName: cats
+   modelFullName: Cats Recognition
+   modelFile: catsRecognition.h5
+   outputValueType: class_probability
+   contentType: image
+
+   modelControllerClassOverrideFile: cats
+   modelControllerClassName: CatsClass
+
+Save above lines in your ``/cats`` folder as *config.ini*
+
+4. Write Class for Your model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: buildoutcfg
+
+
+
+Check our ready models
+----------------------
+
+
+* `Car Recognition <https://mlapi.io/machine-learning/car-brand-and-model-recognition/>`_
+* `Polish Sentiment Analysis <https://mlapi.io/api/polish-sentiment-analysis/>`_
+
+TODO
+----
+
+Models which we plan to do. If you need model, just write to us office@ermlab.com or edit this document and create pull request :)
+
+Contributors
+------------
+
+`Ermlab Software <https://ermlab.com>`_\ :
+
+
+* Marcel Odya (@marcel-odya)
+* Szymon Płotka (@simongeek)
+* Krzysztof Sopyła (@ksopyla)

@@ -33,8 +33,13 @@
             
   <div class="section" id="welcome-to-mlapi-s-documentation">
 <h1>Welcome to MLAPI’s documentation!<a class="headerlink" href="#welcome-to-mlapi-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>It is a simple API Framework for serving your <strong>Machine Learning</strong> model.</p>
+<p>Don’t write glue code for API and Keras model!
+We did it for You!</p>
+</div>
+<div class="section" id="repository-contents">
+<h1>Repository contents<a class="headerlink" href="#repository-contents" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Repository contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="mlapi/app.html">Flask API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mlapi/helpers.html">API Helper functions</a></li>
@@ -70,6 +75,75 @@
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
+<div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>We will show by example how to run Your own project.</p>
+<p>Suppose our project is “Cats recognition” - does the picture contain a cat or not?</p>
+<div class="section" id="save-model">
+<h2>1. Save model<a class="headerlink" href="#save-model" title="Permalink to this headline">¶</a></h2>
+<p>If you use Keras library, the first step is to save model as below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import necessary package</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="c1"># Define simple example Keras model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;catsRecognition.h5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After this process you will receive in the main project directory file: catsRecognition.h5.</p>
+</div>
+<div class="section" id="insert-your-model-into-mlapi">
+<h2>2. Insert Your model into MLAPI<a class="headerlink" href="#insert-your-model-into-mlapi" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to mlapi main directory</li>
+<li><code class="docutils literal notranslate"><span class="pre">/API/models/computed</span></code></li>
+<li>Create Your own directory name for example “cats”</li>
+<li>Insert your model file into folder /cats</li>
+</ol>
+</div>
+<div class="section" id="write-config-for-your-model">
+<h2>3. Write config for Your model<a class="headerlink" href="#write-config-for-your-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">CATS</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">modelName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cats</span>
+<span class="l l-Scalar l-Scalar-Plain">modelFullName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Cats Recognition</span>
+<span class="l l-Scalar l-Scalar-Plain">modelFile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">catsRecognition.h5</span>
+<span class="l l-Scalar l-Scalar-Plain">outputValueType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">class_probability</span>
+<span class="l l-Scalar l-Scalar-Plain">contentType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">image</span>
+
+<span class="l l-Scalar l-Scalar-Plain">modelControllerClassOverrideFile</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cats</span>
+<span class="l l-Scalar l-Scalar-Plain">modelControllerClassName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">CatsClass</span>
+</pre></div>
+</div>
+<p>Save above lines in your <code class="docutils literal notranslate"><span class="pre">/cats</span></code> folder as <em>config.ini</em></p>
+</div>
+<div class="section" id="write-class-for-your-model">
+<h2>4. Write Class for Your model<a class="headerlink" href="#write-class-for-your-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-buildoutcfg notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="section" id="check-our-ready-models">
+<h3>Check our ready models<a class="headerlink" href="#check-our-ready-models" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://mlapi.io/machine-learning/car-brand-and-model-recognition/">Car Recognition</a></li>
+<li><a class="reference external" href="https://mlapi.io/api/polish-sentiment-analysis/">Polish Sentiment Analysis</a></li>
+</ul>
+</div>
+<div class="section" id="todo">
+<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
+<p>Models which we plan to do. If you need model, just write to us <a class="reference external" href="mailto:office&#37;&#52;&#48;ermlab&#46;com">office<span>&#64;</span>ermlab<span>&#46;</span>com</a> or edit this document and create pull request :)</p>
+</div>
+<div class="section" id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://ermlab.com">Ermlab Software</a>:</p>
+<ul class="simple">
+<li>Marcel Odya (&#64;marcel-odya)</li>
+<li>Szymon Płotka (&#64;simongeek)</li>
+<li>Krzysztof Sopyła (&#64;ksopyla)</li>
+</ul>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -80,7 +154,20 @@
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to MLAPI’s documentation!</a></li>
+<li><a class="reference internal" href="#repository-contents">Repository contents</a></li>
 <li><a class="reference internal" href="#indices">Indices</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li><a class="reference internal" href="#save-model">1. Save model</a></li>
+<li><a class="reference internal" href="#insert-your-model-into-mlapi">2. Insert Your model into MLAPI</a></li>
+<li><a class="reference internal" href="#write-config-for-your-model">3. Write config for Your model</a></li>
+<li><a class="reference internal" href="#write-class-for-your-model">4. Write Class for Your model</a><ul>
+<li><a class="reference internal" href="#check-our-ready-models">Check our ready models</a></li>
+<li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#contributors">Contributors</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
