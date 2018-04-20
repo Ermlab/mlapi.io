@@ -1,0 +1,233 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DB models class &#8212; MLAPI 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-db.dbModels">
+<span id="db-models-class"></span><h1>DB models class<a class="headerlink" href="#module-db.dbModels" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="db.dbModels.BlacklistToken">
+<em class="property">class </em><code class="descclassname">db.dbModels.</code><code class="descname">BlacklistToken</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#BlacklistToken"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.BlacklistToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Token Model for storing JWT tokens</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>blacklisted_on</strong></dt>
+<dd></dd>
+<dt><strong>id</strong></dt>
+<dd></dd>
+<dt><strong>token</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">query_class</span></code></td>
+<td>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_sqlalchemy.BaseQuery</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="db.dbModels.Request">
+<em class="property">class </em><code class="descclassname">db.dbModels.</code><code class="descname">Request</code><span class="sig-paren">(</span><em>request_type</em>, <em>request_url</em>, <em>response</em>, <em>user_id</em>, <em>is_xhr</em>, <em>headers</em>, <em>data_type=False</em>, <em>data=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#Request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.Request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model for storing user requests.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>request_type: str of max 6 chars</strong></dt>
+<dd><p class="first last">GET, POST, OPTIONS etc..</p>
+</dd>
+<dt><strong>request_url: str of max 64 chars</strong></dt>
+<dd></dd>
+<dt><strong>response: str of max 1024 chars</strong></dt>
+<dd></dd>
+<dt><strong>user_id: int</strong></dt>
+<dd><p class="first last">Foreign key from <cite>users</cite> table</p>
+</dd>
+<dt><strong>headers: str of max 1024 chars</strong></dt>
+<dd></dd>
+<dt><strong>is_xhr: bool (int cast)</strong></dt>
+<dd><p class="first last">1 if the request was triggered via a JavaScript XMLHttpRequest.</p>
+</dd>
+<dt><strong>data_type: char</strong></dt>
+<dd><p class="first last">Type of data sent. I - image, T - text</p>
+</dd>
+<dt><strong>data: str of max 1024 chars</strong></dt>
+<dd><p class="first last">Contains path to file on server or plain text.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">query_class</span></code></td>
+<td>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_sqlalchemy.BaseQuery</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="db.dbModels.User">
+<em class="property">class </em><code class="descclassname">db.dbModels.</code><code class="descname">User</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>uses=100</em>, <em>is_admin=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>User Model for storing user related details</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>id: int</strong></dt>
+<dd></dd>
+<dt><strong>email: str(255)</strong></dt>
+<dd></dd>
+<dt><strong>password: str(255)</strong></dt>
+<dd></dd>
+<dt><strong>uses: int</strong></dt>
+<dd></dd>
+<dt><strong>is_admin: int</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbModels.User.set_uses" title="db.dbModels.User.set_uses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_uses</span></code></a>(uses)</td>
+<td>Sets uses.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#db.dbModels.User.get_uses" title="db.dbModels.User.get_uses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_uses</span></code></a>()</td>
+<td>Returns uses.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#db.dbModels.User.subtract_use" title="db.dbModels.User.subtract_use"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract_use</span></code></a>()</td>
+<td>Subtracts uses.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="db.dbModels.User.get_uses">
+<code class="descname">get_uses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#User.get_uses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.User.get_uses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns uses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbModels.User.set_uses">
+<code class="descname">set_uses</code><span class="sig-paren">(</span><em>uses</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#User.set_uses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.User.set_uses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets uses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="db.dbModels.User.subtract_use">
+<code class="descname">subtract_use</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/db/dbModels.html#User.subtract_use"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#db.dbModels.User.subtract_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts uses.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/db/dbModels.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ermlab sp z o.o..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/db/dbModels.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

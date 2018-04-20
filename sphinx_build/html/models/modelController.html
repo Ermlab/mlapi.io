@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Model controller class &#8212; MLAPI 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-models.modelController">
+<span id="model-controller-class"></span><h1>Model controller class<a class="headerlink" href="#module-models.modelController" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="models.modelController.ModelControllerClass">
+<em class="property">class </em><code class="descclassname">models.modelController.</code><code class="descname">ModelControllerClass</code><span class="sig-paren">(</span><em>config</em>, <em>models_folder_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelController.html#ModelControllerClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelController.ModelControllerClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract lass that every particular model-specific python file should inherit from in order to load the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>__config</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first last">Config loaded by ModelsControllerClass through ConfigParser</p>
+</dd>
+<dt><strong>__model</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Keras, Tensorflow or Pycharm format model</span></dt>
+<dd><p class="first last">Loaded model</p>
+</dd>
+<dt><strong>__models_folder_path</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Path to folder containing config.ini of the model.</p>
+</dd>
+<dt><strong>__model_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Name of the loaded model.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#models.modelController.ModelControllerClass.load" title="models.modelController.ModelControllerClass.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>()</td>
+<td>Abstract method for loading models.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#models.modelController.ModelControllerClass.process_input_data" title="models.modelController.ModelControllerClass.process_input_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_input_data</span></code></a>(data)</td>
+<td>Abstract method for processing input data to predict.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#models.modelController.ModelControllerClass.get_formatted_prediction" title="models.modelController.ModelControllerClass.get_formatted_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_formatted_prediction</span></code></a>(prediction)</td>
+<td>Abstract method that returns beautified string to send to client</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#models.modelController.ModelControllerClass.feed" title="models.modelController.ModelControllerClass.feed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">feed</span></code></a>(data)</td>
+<td>Abstract method returning preformatted prediction on given <cite>data</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="models.modelController.ModelControllerClass.feed">
+<code class="descname">feed</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelController.html#ModelControllerClass.feed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelController.ModelControllerClass.feed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method returning preformatted prediction on given <cite>data</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or MultiDict</span></dt>
+<dd><p class="first last">Data that comes from the client passed by ModelsHolder’s sendRequest method.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">Preformatted prediction</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="models.modelController.ModelControllerClass.get_formatted_prediction">
+<code class="descname">get_formatted_prediction</code><span class="sig-paren">(</span><em>prediction</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelController.html#ModelControllerClass.get_formatted_prediction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelController.ModelControllerClass.get_formatted_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method that returns beautified string to send to client</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>prediction</strong> <span class="classifier-delimiter">:</span> <span class="classifier">predictions returned from the model</span></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">pre-formatted string</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="models.modelController.ModelControllerClass.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelController.html#ModelControllerClass.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelController.ModelControllerClass.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method for loading models.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="models.modelController.ModelControllerClass.process_input_data">
+<code class="descname">process_input_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelController.html#ModelControllerClass.process_input_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelController.ModelControllerClass.process_input_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method for processing input data to predict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">Models output.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/models/modelController.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ermlab sp z o.o..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/models/modelController.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

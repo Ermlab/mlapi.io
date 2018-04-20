@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>manage &#8212; MLAPI 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for manage</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!.venv/bin/python</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">coverage</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">flask_script</span> <span class="k">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">flask_migrate</span> <span class="k">import</span> <span class="n">Migrate</span><span class="p">,</span> <span class="n">MigrateCommand</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="k">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">g</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="n">COV</span> <span class="o">=</span> <span class="n">coverage</span><span class="o">.</span><span class="n">coverage</span><span class="p">(</span>
+    <span class="n">branch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mlapi/*&#39;</span><span class="p">,</span> <span class="s1">&#39;models/*&#39;</span><span class="p">,</span> <span class="s1">&#39;tests/*&#39;</span><span class="p">],</span>
+    <span class="n">omit</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;tests/*&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mlapi/datadbbase/config.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;*/__init__.py&#39;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">COV</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">mlapi.app</span> <span class="k">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">database</span>
+<span class="kn">from</span> <span class="nn">db</span> <span class="k">import</span> <span class="n">dbModels</span> <span class="k">as</span> <span class="n">models</span>
+
+
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># migrations</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="n">MigrateCommand</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="test"><a class="viewcode-back" href="../manage.html#manage.test">[docs]</a><span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Runs the unit tests without test coverage.&quot;&quot;&quot;</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;test*.py&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tests</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">wasSuccessful</span><span class="p">():</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">1</span></div>
+
+<span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">list_routes</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">urllib</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">iter_rules</span><span class="p">():</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">rule</span><span class="o">.</span><span class="n">arguments</span><span class="p">:</span>
+            <span class="n">options</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">{0}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+
+        <span class="n">methods</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">methods</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">url_for</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:50s}</span><span class="s2"> </span><span class="si">{:20s}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">methods</span><span class="p">,</span> <span class="n">url</span><span class="p">))</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<div class="viewcode-block" id="cov"><a class="viewcode-back" href="../manage.html#manage.cov">[docs]</a><span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">cov</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Runs the unit tests with coverage.&quot;&quot;&quot;</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tests</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">wasSuccessful</span><span class="p">():</span>
+        <span class="n">COV</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">COV</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coverage Summary:&#39;</span><span class="p">)</span>
+        <span class="n">COV</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+        <span class="n">basedir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">covdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;tmp/coverage&#39;</span><span class="p">)</span>
+        <span class="n">COV</span><span class="o">.</span><span class="n">html_report</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">covdir</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HTML version: file://</span><span class="si">%s</span><span class="s1">/index.html&#39;</span> <span class="o">%</span> <span class="n">covdir</span><span class="p">)</span>
+        <span class="n">COV</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="create_db"><a class="viewcode-back" href="../manage.html#manage.create_db">[docs]</a><span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">create_db</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Creates the database tables.&quot;&quot;&quot;</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="drop_db"><a class="viewcode-back" href="../manage.html#manage.drop_db">[docs]</a><span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">drop_db</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Drops the database tables.&quot;&quot;&quot;</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">drop_all</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ermlab sp z o.o..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Models holder class &#8212; MLAPI 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-models.modelsHolder">
+<span id="models-holder-class"></span><h1>Models holder class<a class="headerlink" href="#module-models.modelsHolder" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="models.modelsHolder.ModelsHolderClass">
+<em class="property">class </em><code class="descclassname">models.modelsHolder.</code><code class="descname">ModelsHolderClass</code><span class="sig-paren">(</span><em>models_directory</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelsHolder.html#ModelsHolderClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelsHolder.ModelsHolderClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that loads and holds in memory all models for further predictions.</p>
+<dl class="docutils">
+<dt>__configParser <span class="classifier-delimiter">:</span> <span class="classifier">ConfigParser()</span></dt>
+<dd>Instance of config parser for loading configs that come with models.</dd>
+<dt>__config <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd>Dictionary that contains entries of configs of every model. {‘model_no_1’ : {‘arg’:1, ‘arg2’:2}}</dd>
+<dt>__models <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd>List of strings with model names to load.</dd>
+<dt>__model_instance_holder <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd>A dictionary containing instances of per-model specific classes (inheriting from the base ModelController class)</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#models.modelsHolder.ModelsHolderClass.sendRequest" title="models.modelsHolder.ModelsHolderClass.sendRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sendRequest</span></code></a>(model_name,&nbsp;data)</td>
+<td>Invokes the ModelController’s feed method that returns models prediction.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#models.modelsHolder.ModelsHolderClass.getAvailableModels" title="models.modelsHolder.ModelsHolderClass.getAvailableModels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getAvailableModels</span></code></a>()</td>
+<td>Returns loaded and available models.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#models.modelsHolder.ModelsHolderClass.getModelsConfigs" title="models.modelsHolder.ModelsHolderClass.getModelsConfigs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getModelsConfigs</span></code></a>()</td>
+<td>Get all models configs.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="models.modelsHolder.ModelsHolderClass.getAvailableModels">
+<code class="descname">getAvailableModels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelsHolder.html#ModelsHolderClass.getAvailableModels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelsHolder.ModelsHolderClass.getAvailableModels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns loaded and available models.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="models.modelsHolder.ModelsHolderClass.getModelsConfigs">
+<code class="descname">getModelsConfigs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelsHolder.html#ModelsHolderClass.getModelsConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelsHolder.ModelsHolderClass.getModelsConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all models configs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dict</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="models.modelsHolder.ModelsHolderClass.sendRequest">
+<code class="descname">sendRequest</code><span class="sig-paren">(</span><em>model_name</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/models/modelsHolder.html#ModelsHolderClass.sendRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.modelsHolder.ModelsHolderClass.sendRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invokes the ModelController’s feed method that returns models prediction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>model_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Name of the model to use.</p>
+</dd>
+<dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">MultiDict or str</span></dt>
+<dd><p class="first last">Data sent by the client to pass to the ModelController.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">Printable string ready to view / send to client. Prediction results or error message.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/models/modelsHolder.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ermlab sp z o.o..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/models/modelsHolder.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
