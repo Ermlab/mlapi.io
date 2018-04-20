@@ -14,7 +14,7 @@ https://ermlab.github.io/mlapi.io/
 
 ## Dockerfile
 
-```
+```bash
 docker build -t mlapi .
 docker run -d --name mlapi -e APP_SETTINGS=DevelopmentConfig -e DB_SECRET_KEY=extremely_secret_key -p 0.0.0.0:8000:8000 mlapi gunicorn -b 0.0.0.0:8000 mlapi.app
 docker exec -d mlapi bash -c "python manage.py create_db"
@@ -25,7 +25,7 @@ Then the API is available at `localhost:8000`.
 ## Manual installation
 ### Seeting up the environment
 
-```
+```bash
 cd API/
 virtualenv -p python3 .venv
 source .venv/bin/activate
@@ -36,7 +36,7 @@ python manage.py create_db
 ```
 For ease of use the `DB_SECRET_KEY` value can be written inside `API/db/config.py`.
 Then you will need to create the first DB admin user which then will allow you to create other users via API rather than using the command-line and direct DB connection. 
-```
+```python
 python
 > from mlapi.app import database as db
 > from db.dbModels import User
@@ -48,7 +48,7 @@ python
 
 ## Usage
 
-```
+```bash
 cd API/
 source .venv/bin/activate
 DB_SECRET_KEY=extremely_secret_key gunicorn mlapi.app
