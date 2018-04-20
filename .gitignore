@@ -139,3 +139,7 @@ pip-selfcheck.json
 
 
 # End of https://www.gitignore.io/api/linux,python,virtualenv
+
+*.jpg
+*.jpeg
+*.db

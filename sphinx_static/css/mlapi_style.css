@@ -1,0 +1,11 @@
+h1 {
+    background-color: rgba(78, 125, 255, 0.92) !important;
+    color: #FFF !important;
+}
+h2, h3, h4, h5, h6 {
+    color: #2c679b !important;
+}
+
+code {
+    color: #1a2d8d !important;
+}

@@ -1,8 +1,3 @@
-.. MLAPI documentation master file, created by
-   sphinx-quickstart on Thu Apr 19 19:48:43 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to MLAPI's documentation!
 =================================
 It is a simple API Framework for serving your **Machine Learning** model.
@@ -11,10 +6,10 @@ Don't write glue code for API and Keras model!
 We did it for You!
 
 Repository contents
-===================
+-------------------
 
 API
----
+^^^
 
 .. toctree::
     mlapi/app
@@ -24,14 +19,14 @@ API
     mlapi/parsers/imageParser
 
 Models handling
----------------
+^^^^^^^^^^^^^^^
 
 .. toctree::
     models/modelsHolder
     models/modelController
 
 Database and project management
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
     manage
@@ -40,7 +35,7 @@ Database and project management
     db/dbModels
 
 Indices
-=======
+-------
 
 * :ref:`genindex`
 * :ref:`modindex`
@@ -48,14 +43,14 @@ Indices
 
 
 Getting started
-===============
+---------------
 
 We will show by example how to run Your own project.
 
 Suppose our project is "Cats recognition" - does the picture contain a cat or not?
 
 1. Save model
--------------
+^^^^^^^^^^^^^
 
 If you use Keras library, the first step is to save model as below:
 
@@ -72,7 +67,7 @@ If you use Keras library, the first step is to save model as below:
 After this process you will receive in the main project directory file: catsRecognition.h5.
 
 2. Insert Your model into MLAPI
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 #. Go to mlapi main directory
@@ -81,7 +76,7 @@ After this process you will receive in the main project directory file: catsReco
 #. Insert your model file into folder /cats
 
 3. Write config for Your model
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: yaml
 
@@ -98,28 +93,26 @@ After this process you will receive in the main project directory file: catsReco
 Save above lines in your ``/cats`` folder as *config.ini*
 
 4. Write Class for Your model
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
     models/modelController
 
 .. code-block:: buildoutcfg
 
-
-
 Check our ready models
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 
 * `Car Recognition <https://mlapi.io/machine-learning/car-brand-and-model-recognition/>`_
 * `Polish Sentiment Analysis <https://mlapi.io/api/polish-sentiment-analysis/>`_
 
 TODO
-----
+^^^^
 
 Models which we plan to do. If you need model, just write to us office@ermlab.com or edit this document and create pull request :)
 
 Contributors
-------------
+^^^^^^^^^^^^
 
 `Ermlab Software <https://ermlab.com>`_\ :
 

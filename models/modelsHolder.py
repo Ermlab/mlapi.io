@@ -23,7 +23,7 @@ class ModelsHolderClass:
     '''Class that loads and holds in memory all models for further predictions.
 
     Attributes
-    ---------
+    ----------
     __configParser : ConfigParser()
         Instance of config parser for loading configs that come with models.
     __config : dict
@@ -38,7 +38,7 @@ class ModelsHolderClass:
     sendRequest : invokes the feed() function defined in ModelController class (which can be overriden) and returns it's respond
     getAvailableModels
     getModelsConfigs
-    
+
     '''
 
     def __init__(self, models_directory):
