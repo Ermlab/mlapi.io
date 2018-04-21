@@ -1,7 +1,7 @@
 MLAPI.IO
 ========
 
-[![CircleCI](https://circleci.com/gh/Ermlab/mlapi.io.svg?style=svg)](https://circleci.com/gh/Ermlab/mlapi.io)
+[![CircleCI](https://circleci.com/gh/Ermlab/mlapi.io/tree/master.svg?style=svg)](https://circleci.com/gh/Ermlab/mlapi.io/tree/master)
 
 It is a simple API Framework for serving your Machine Learning model.
 
