@@ -120,8 +120,7 @@ def create_app(image_storage):
         text = {
             'available_routes': [ 
                 "api.mlapi.io/v2/token - Check current token balance status [POST]",
-                "api.mlapi.io/v2/cars - Car recognition NN[GET, POST]",
-                "api.mlapi.io/v2/sentiment - Text Sentiment Analysis [GET, POST]",
+                "api.mlapi.io/v2/test1 - Car recognition NN[GET, POST]",
                 ]
         }
         return text
@@ -168,21 +167,21 @@ def create_app(image_storage):
             pass
     
     ## Needed for unathorized pre-requests
-    @app.route('/v2/cars', methods=['OPTIONS'])
-    def cars_opt():
+    @app.route('/v2/test1', methods=['OPTIONS'])
+    def test1_opt():
         return ""
 
-    @app.route('/v2/cars', methods=['GET', 'POST'])
+    @app.route('/v2/test1', methods=['GET', 'POST'])
     @jwt_required()
     @set_parsers(JSONParser, JpegImageParser, PngImageParser, MultiPartParser)
     @reduce_uses  
-    def cars(errors=None):
+    def test1(errors=None):
         '''Responds with predictions on the sent image on POST. Returns description on GET request.
         Accepted formats: image/jpeg, image/png, application/json with an image in Base64 format.
         '''
         if errors:
             return {"result":errors_handler(errors)}
-        model_name = 'cars'
+        model_name = 'test1'
         logging.debug("REQUEST: {}".format(repr(request)))
         if request.method == 'GET':
             return {
@@ -216,45 +215,6 @@ def create_app(image_storage):
                     response = str(response['result']), 
                     data_type = "I",
                     data = path)
-
-                return response
-            else:
-                return {
-                "result":"You provided no data"
-            }
-
-    ## Needed for unathorized pre-requests
-    @app.route('/v2/sentiment', methods=['OPTIONS'])
-    def sentiment_opt():
-        return ""
-
-    @app.route('/v2/sentiment', methods=['GET', 'POST'])
-    @jwt_required()
-    @reduce_uses    
-    def sentiment(errors=None):
-        '''Responds with predictions on the sent text on POST. Returns description on GET request.
-        Accepted formats: application/json
-        '''
-        if errors:
-            return {"result":errors_handler(errors)}
-
-        model_name = 'sentiment'
-        if request.method == 'GET':
-            return {
-                "description" : "Make an authenticated POST request for predicting the text. { 'text' : 'Text to predict' }",
-                "accepted_content_type" : [
-                    "application/json"
-                ]
-            }
-        elif request.method == 'POST':
-            if request.data:
-                response = {
-                "result": models_holder_instance.sendRequest(model_name, request.data)
-                }
-                save_request(
-                    response = str(response['result']), 
-                    data_type = "T",
-                    data = request.data['text'])
 
                 return response
             else:

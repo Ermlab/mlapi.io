@@ -72,31 +72,6 @@ class TestApp(TestCase):
     ############################################################
     ######################## GET TESTS #########################
     ############################################################
-    @mock.patch("flask_jwt._jwt_required")
-    def test_app_is_responding_on_get_cars(self, monkeypatch):
-        monkeypatch = jwt_mock
-        response = self.client.get("/v2/cars")
-        valid_response = {
-                "description" : "Make an authenticated POST request for predicting the image. POST binary file with proper header or { 'image' : 'BASE64 image' }",
-                "accepted_content_type" : [
-                    "image/jpeg",
-                    "image/png",
-                    "application/json"
-                ]
-            }
-        self.assertEquals(response.json, valid_response)
-
-    @mock.patch("flask_jwt._jwt_required")
-    def test_app_is_responding_on_get_sentiment(self, monkeypatch):
-        monkeypatch = jwt_mock
-        response = self.client.get("/v2/sentiment")
-        valid_response = {
-                "description" : "Make an authenticated POST request for predicting the text. { 'text' : 'Text to predict' }",
-                "accepted_content_type" : [
-                    "application/json"
-                ]
-            }
-        self.assertEquals(response.json, valid_response)
 
     @mock.patch("flask_jwt._jwt_required")
     def test_app_is_responding_on_get_root(self, monkeypatch):
@@ -105,8 +80,7 @@ class TestApp(TestCase):
         valid_response = {
             'available_routes': [ 
                 "api.mlapi.io/v2/token - Check current token balance status [POST]",
-                "api.mlapi.io/v2/cars - Car recognition NN[GET, POST]",
-                "api.mlapi.io/v2/sentiment - Text Sentiment Analysis [GET, POST]",
+                "api.mlapi.io/v2/test1 - Car recognition NN[GET, POST]",
                 ]
         }
         self.assertEquals(response.json, valid_response)
@@ -119,40 +93,10 @@ class TestApp(TestCase):
 
         response = self.client.get("/")
         self.assertRedirects(response, '/v2/')
-    # @mock.patch("flask_jwt._jwt_required")
-    # @mock.patch("flask_jwt.current_identity")
-    # def test_app_is_redirecting_from_get_cars_with_trailing_slash(self, identity_mock, monkeypatch):
-    #     monkeypatch = jwt_mock
-    #     identity_mock = { 'user_id' : 1 }
-
-    #     response = self.client.get("/v2/cars/")
-    #     self.assertRedirects(response, '/v2/cars')
-
-    # @mock.patch("flask_jwt._jwt_required")  
-    # @mock.patch("flask_jwt.current_identity")
-    # def test_app_is_redirecting_from_get_sentiment_with_trailing_slash(self, identity_mock, monkeypatch):
-    #     monkeypatch = jwt_mock
-    #     identity_mock = { 'user_id' : 1 }
-
-    #     response = self.client.get("/v2/sentiment/")
-    #     self.assertRedirects(response, '/v2/sentiment')
 
     ############################################################
     ######################## POST TESTS ########################
     ############################################################
-    @mock.patch("flask_jwt._jwt_required")
-    @mock.patch("flask_jwt.current_identity")
-    def test_app_is_responding_on_post_sentiment(self, identity_mock, monkeypatch):
-        monkeypatch = jwt_mock
-        identity_mock = { 'user_id' : 1 }
-
-        response = self.client.post("/v2/sentiment",
-            data='{"text":"polecam"}',
-            headers={'content-type': 'application/json'}
-        )
-        valid_response = "{'prediction': ['Neutral: 0.11%', 'Positive: 99.52%', 'Negative: 0.34%']}".split(":")[1::2]
-        self.assert_200(response, "Not returned 200 code.")
-        self.assertEquals(str(response.json).split(":")[1::2], valid_response)
 
     @mock.patch("flask_jwt._jwt_required")
     @mock.patch("flask_jwt.current_identity")
@@ -170,7 +114,7 @@ class TestApp(TestCase):
         
         image_name = "{}.{}".format(fake_uuid, "jpg")
         response = self.client.post(
-            '/v2/cars',
+            '/v2/test1',
             data=fake_image_bytes,
             headers={'content-type': 'image/jpeg'}
         )
@@ -183,7 +127,7 @@ class TestApp(TestCase):
 
         image_name = "{}.{}".format(fake_uuid, "png")
         response = self.client.post(
-            '/v2/cars',
+            '/v2/test1',
             data=fake_image_bytes,
             headers={'content-type': 'image/png'}
         )
@@ -210,7 +154,7 @@ class TestApp(TestCase):
         b = base64.b64decode(fake_image_json['image'].split(",")[1])
         image_name = "{}.{}".format(fake_uuid, "png")
         response = self.client.post(
-            '/v2/cars',
+            '/v2/test1',
             data=json.dumps(fake_image_json),
             headers={'content-type': 'application/json'}
         )
