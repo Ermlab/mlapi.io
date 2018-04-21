@@ -48,6 +48,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            mkdir images
             DB_SECRET_KEY="test" python manage.py test
 
       - store_artifacts:
