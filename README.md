@@ -1,7 +1,11 @@
 MLAPI.IO
 ========
 
-Machine learning API framework, check out https://mlapi.io
+[![CircleCI](https://circleci.com/gh/Ermlab/mlapi.io.svg?style=svg)](https://circleci.com/gh/Ermlab/mlapi.io)
+
+It is a simple API Framework for serving your Machine Learning model.
+
+Don’t write glue code for API and Keras model! We did it for You! https://mlapi.io
 
 # Developer documentation
 
