@@ -11,7 +11,7 @@ from flask_api.decorators import set_parsers
 from flask_cors import CORS
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
-from mlapi.modelRouter import ModelRouterClass
+# from mlapi.modelRouter import ModelRouterClass
 
 from mlapi.api_users_methods import create_user, delete_user, update_user
 from mlapi.helpers import err_tmplt
