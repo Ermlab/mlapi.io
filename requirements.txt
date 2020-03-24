@@ -5,7 +5,7 @@ attrs==17.4.0
 Babel==2.5.3
 bcrypt==3.1.2
 beautifulsoup4==4.6.0
-bleach==1.5.0
+bleach==3.1.2
 boto==2.48.0
 boto3==1.5.8
 botocore==1.8.22
