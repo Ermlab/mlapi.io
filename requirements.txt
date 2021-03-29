@@ -63,7 +63,7 @@ protobuf==3.4.0
 psycopg2==2.7.3.2
 py==1.5.2
 pycparser==2.17
-Pygments==2.2.0
+Pygments==2.7.4
 PyJWT==1.4.2
 pylint==1.8.4
 pyparsing==2.2.0
