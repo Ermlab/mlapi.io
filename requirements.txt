@@ -23,7 +23,7 @@ enum34==1.1.6
 Flask==0.12.2
 Flask-API==1.0
 Flask-Bcrypt==0.7.1
-Flask-Cors==3.0.3
+Flask-Cors==3.0.9
 Flask-HTTPAuth==3.2.3
 Flask-JWT==0.3.2
 Flask-Migrate==2.0.2
