@@ -54,7 +54,7 @@ mistune==0.8.3
 numpy==1.14.2
 numpydoc==0.8.0
 olefile==0.44
-opencv-python==3.3.0.10
+opencv-python==3.4.7.28
 packaging==17.1
 pandas==0.22.0
 Pillow==4.3.0
