@@ -50,7 +50,7 @@ Mako==1.0.6
 Markdown==2.6.9
 MarkupSafe==1.0
 mccabe==0.6.1
-mistune==0.8.3
+mistune==2.0.3
 numpy==1.14.2
 numpydoc==0.8.0
 olefile==0.44
